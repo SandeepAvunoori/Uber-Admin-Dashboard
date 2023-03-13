@@ -1,0 +1,12 @@
+.uber-home-page {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-image: url("https://mplan.media/wp-content/uploads/2020/04/1.jpg");
+    height: 100vh;
+    background-size: cover;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+
