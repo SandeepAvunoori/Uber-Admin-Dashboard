@@ -1,0 +1,32 @@
+.driver-photo{
+    height: 100px;
+    background-color: aqua;
+    border-radius: 13px;
+}
+.driver-name{
+    font-family: "roboto";
+    font-size: 24px;
+    font-weight: 500;
+
+}
+.driver-email{
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 500;
+}
+.driver-list-name{
+    background-color: black;
+    color: white;
+    margin-top: 0;
+    text-align: center;
+    font-family: "Roboto";
+    font-size: 30px;
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 20px;
+
+}
+
+.card-names{
+    padding-left: 25px;
+}
