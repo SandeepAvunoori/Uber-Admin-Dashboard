@@ -2,11 +2,16 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    background-image: url("https://mplan.media/wp-content/uploads/2020/04/1.jpg");
-    height: 100vh;
-    background-size: cover;
-    padding-left: 15px;
-    padding-right: 15px;
 
 }
-
+.heading{
+    background-color: black;
+    color: white;
+    margin-top: 0;
+    text-align: center;
+    font-family: "Roboto";
+    font-size: 30px;
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 20px;
+}

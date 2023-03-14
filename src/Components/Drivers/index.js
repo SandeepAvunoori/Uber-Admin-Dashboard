@@ -1,43 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import DriverProfileCard from './DriverProfileCard';
+import { Card, Container, Row, Col } from 'react-bootstrap';
+import './index.css'
 
 function Drivers() {
   const [drivers, setDrivers] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/drivers')
-      .then(response => setDrivers(response.data))
-      .catch(error => console.log(error));
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((data) => setDrivers(data));
   }, []);
 
-  const handleDeleteDriver = (id) => {
-    axios.delete(`/api/drivers/${id}`)
-      .then(response => setDrivers(drivers.filter(driver => driver.id !== id)))
-      .catch(error => console.log(error));
-  };
-
-  const handleEditDriver = (id) => {
-    // TODO: implement editing of driver profile
-  };
-
   return (
-    <div>
-      <h1>Drivers</h1>
-      {drivers.map(driver => (
-        <DriverProfileCard
-          key={driver.id}
-          id={driver.id}
-          name={driver.name}
-          photo={driver.photo}
-          age={driver.age}
-          rating={driver.rating}
-          totalTrips={driver.totalTrips}
-          onDelete={handleDeleteDriver}
-          onEdit={handleEditDriver}
-        />
-      ))}
-    </div>
+    <Container>
+      <h1 className='driver-list-name'>Uber Drivers</h1>
+      <Row>
+        {drivers.map((driver) => (
+          <Col key={driver.id} md={4} className="mb-4 card-names" >
+            <Card>
+              <Card.Img variant="top" className='driver-photo' src={`https://robohash.org/${driver.username}`} />
+              <Card.Body>
+                <Card.Title className='driver-name'>{driver.name}</Card.Title>
+                <Card.Text className='driver-email'>{driver.email}</Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </Container>
   );
 }
 

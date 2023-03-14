@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import './index.css';
 
 const data = [
   { date: "2022-01-01", totalRevenue: 2000, driverRevenue: 500 },
@@ -32,6 +33,7 @@ const SummaryChart = () => {
 
   return (
     <div>
+      <h1 className="summary">Summary</h1>
       <select  className ="graph"value={filter} onChange={(e) => setFilter(e.target.value)}>
         <option value="quarterly">Quarterly</option>
         <option value="monthly">Monthly</option>

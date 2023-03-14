@@ -3,9 +3,10 @@ import './index.css';
 
 const DashBoard = () =>{
     return(
-        <div className="uber-home-page">
-            <div>
-                <h1>Uber DashBoard</h1>
+        <div>
+            <div className="uber-home-page">
+                <h1 className="heading">Uber DashBoard</h1>
+                <p>This app is available in thousands of cities worldwide, so you can request a ride even when you’re far from home. Search cities.</p>
             </div>
             <Sidebar/>
         </div>

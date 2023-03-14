@@ -1,78 +1,71 @@
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import './index.css';
 
-function TripCreation(props) {
-  const [driver, setDriver] = useState("");
-  const [date, setDate] = useState(new Date());
-  const [numTrips, setNumTrips] = useState(1);
+function TripCreation() {
+  const [driverId, setDriverId] = useState("");
+  const [date, setDate] = useState("");
+  const [numTrips, setNumTrips] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    // Generate dummy trips
-    const trips = [];
-    for (let i = 0; i < numTrips; i++) {
-      trips.push({
-        driver: driver,
-        date: date,
-        fare: Math.floor(Math.random() * 100) + 1,
-        distance: Math.floor(Math.random() * 10) + 1,
-        rating: Math.floor(Math.random() * 5) + 1
-      });
-    }
-
-    // Add the trips to the database
-    fetch('https://api.example.com/data', {
-      method: 'POST',
+    const url = "https://jsonplaceholder.typicode.com/posts";
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        driverId,
+        date,
+        numTrips,
+      }),
       headers: {
-        'Content-Type': 'application/json'
+        "Content-type": "application/json; charset=UTF-8",
       },
-      body: JSON.stringify(trips)
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      // Display success message to the user
-    })
-    .catch(error => console.log(error));
+    });
+
+    const data = await response.json();
+    console.log(data);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form-control">
-      <label htmlFor="driver-select">Select Driver:</label>
-      <select
-        id="driver-select"
-        name="driver"
-        value={driver}
-        onChange={(event) => setDriver(event.target.value)}
-      >
-        {/* Populate this dropdown with options for all drivers in the database */}
-      </select>
-
-      <label htmlFor="date-select">Select Date:</label>
-      <DatePicker
-        id="date-select"
-        selected={date}
-        onChange={(date) => setDate(date)}
-        dateFormat="MM/dd/yyyy"
-      />
-
-      <label htmlFor="num-trips">Select Number of Trips to Generate:</label>
-      <input
-        id="num-trips"
-        type="number"
-        name="num_trips"
-        min="1"
-        max="10"
-        value={numTrips}
-        onChange={(event) => setNumTrips(event.target.value)}
-      />
-
-      <button type="submit" id="generate-btn">
-        Generate Trip(s)
-      </button>
-    </form>
+    <div className="form-control">
+      <h3 className="trip-creation-heading">Trip Creation</h3>
+      <form onSubmit={handleSubmit} className='form-list'>
+        <div>
+          <label htmlFor="driverId">Driver:</label>
+          <select
+            id="driverId"
+            value={driverId}
+            onChange={(e) => setDriverId(e.target.value)}
+          >
+            <option value="" className="select-driver">-- Select a driver --</option>
+            <option value="1">Driver 1</option>
+            <option value="2">Driver 2</option>
+            <option value="3">Driver 3</option>
+            <option value="4">Driver 4</option>
+            <option value="5">Driver 5</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="date">Date:</label>
+          <input
+            type="date"
+            id="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="numTrips">Number of trips:</label>
+          <input
+            type="number"
+            id="numTrips"
+            value={numTrips}
+            onChange={(e) => setNumTrips(e.target.value)}
+          />
+        </div>
+        <button type="submit">Generate Trips</button>
+      </form>
+    </div>
   );
 }
 

@@ -1,23 +1,22 @@
 import React from 'react';
-import { Link} from 'react-router-dom';
 import './index.css';
 
-const Sidebar = () => {
+function Sidebar() {
   return (
-    <div className='sidebar'>
-      <ul className='list-type'>
-        <li className='names'>
-          <Link to="/drivers">Drivers</Link>
+    <div className="sidebar">
+      <ul>
+        <li>
+          <a href="/drivers">Drivers</a>
         </li>
-        <li className='names'>
-          <Link to="/summary">Summary</Link>
+        <li>
+          <a href="/summary">Summary</a>
         </li>
-        <li className='names'>
-          <Link to="/trip-creation">Trip Creation</Link>
+        <li>
+          <a href="/trip-creation">Trip Creation</a>
         </li>
       </ul>
     </div>
   );
-};
+}
 
 export default Sidebar;
